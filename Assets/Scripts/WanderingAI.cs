@@ -1,3 +1,4 @@
+
 //using System.Collections;
 //using System.Collections.Generic;
 //using UnityEngine;
@@ -36,25 +37,21 @@
 //        // create ray from the wandering game object, pointed in the same diretion as the game object
 //        Ray ray = new Ray(transform.position, transform.forward);
 
-//        // RaycastHit hit; // contains hit information
-//        bool foundPlayer = false;
+//        RaycastHit hit; // contains hit information
 
 //        // performs a raycast in every direction around us
 //        // possible to change this so that it can filter player to consistently shoot fireball?
 //        // it looks like SphereCastAll returns an array, so that might be useful for that idea
-//        // what i want to do is check if the player is within shooting range, and if so then shoot at them.
-//        // if player is too close to ai then it will back away from the player. else, just wander
-//        // if (Physics.SphereCast(ray, 10.0f, out hit))
 //        RaycastHit[] hitObjs = Physics.SphereCastAll(ray, pathfindingRadius, maxPathfindingRadius, layermask);
-//        Debug.DrawRay(ray.origin, ray.direction);
+//        // if (Physics.SphereCast(ray, 0.75f, out hit))
 //        if (hitObjs.Length > 0)
 //        {
-//            Debug.Log("Found!");
+//            // reference to game object in our spherecast
+//            // GameObject hitObject = hit.transform.gameObject;
 //            foreach (RaycastHit hitObj in hitObjs)
 //            {
 //                // reference to game object in our spherecast
 //                GameObject hitObject = hitObj.transform.gameObject;
-
 //                // if object hit was a player character, shoot a fireball
 //                // else, wander as normal
 //                if (hitObject.GetComponent<PlayerCharacter>())
@@ -64,15 +61,15 @@
 //                        fireball = Instantiate(fireballPrefab) as GameObject;
 //                        fireball.transform.position = transform.TransformPoint(Vector3.forward * 1.5f);
 //                        fireball.transform.rotation = transform.rotation;
-//                        foundPlayer = true;
 //                    }
 //                }
-//            }
-//            if (foundPlayer == false)
-//            {
-//                float angle = Random.Range(-110, 110);
-//                transform.Rotate(0, angle, 0);
-//                Debug.Log("changing direction...");
+//                else if (hitObj.distance < obstacleRange && hitObject.gameObject != this.gameObject)
+//                {
+//                    Debug.Log(hitObj.distance);
+//                    Debug.Log(hitObject.name);
+//                    float angle = Random.Range(-110, 110);
+//                    transform.Rotate(0, angle, 0);
+//                }
 //            }
 //        }
 //        else
@@ -88,6 +85,7 @@
 //    }
 //}
 
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -101,8 +99,8 @@ public class WanderingAI : MonoBehaviour
 
     public float speed = 3.0f;
     public float obstacleRange = 5.0f;
-    public float pathfindingRadius = 0.75f;
-    public float maxPathfindingRadius = 10.0f;
+    public float detectionRadius = 10f;
+    public float detectionRadiusOffset = 0f;
 
     // current state
     private bool isAlive;
@@ -129,39 +127,14 @@ public class WanderingAI : MonoBehaviour
         RaycastHit hit; // contains hit information
 
         // performs a raycast in every direction around us
-        // possible to change this so that it can filter player to consistently shoot fireball?
-        // it looks like SphereCastAll returns an array, so that might be useful for that idea
-        RaycastHit[] hitObjs = Physics.SphereCastAll(ray, pathfindingRadius, maxPathfindingRadius, layermask);
-        // if (Physics.SphereCast(ray, 0.75f, out hit))
-        if (hitObjs.Length > 0)
+        // this just focuses on pathfinding, no fireball
+        if (Physics.SphereCast(ray, 0.75f, out hit))
         {
             // reference to game object in our spherecast
-            // GameObject hitObject = hit.transform.gameObject;
-            foreach (RaycastHit hitObj in hitObjs)
-            {
-                // reference to game object in our spherecast
-                GameObject hitObject = hitObj.transform.gameObject;
-                // if object hit was a player character, shoot a fireball
-                // else, wander as normal
-                if (hitObject.GetComponent<PlayerCharacter>())
-                {
-                    if (fireball == null)
-                    {
-                        fireball = Instantiate(fireballPrefab) as GameObject;
-                        fireball.transform.position = transform.TransformPoint(Vector3.forward * 1.5f);
-                        fireball.transform.rotation = transform.rotation;
-                    }
-                }
-                else if (hitObj.distance < obstacleRange)
-                {
-                    Debug.Log(hitObj.distance);
-                    float angle = Random.Range(-110, 110);
-                    transform.Rotate(0, angle, 0);
-                }
-            }
+            GameObject hitObject = hit.transform.gameObject;
 
-            //// if object hit was a player character, shoot a fireball
-            //// else, wander as normal
+            // if object hit was a player character, shoot a fireball
+            // else, wander as normal
             //if (hitObject.GetComponent<PlayerCharacter>())
             //{
             //    if (fireball == null)
@@ -172,40 +145,37 @@ public class WanderingAI : MonoBehaviour
             //    }
             //}
             //else if (hit.distance < obstacleRange)
-            //{
-            //    float angle = Random.Range(-110, 110);
-            //    transform.Rotate(0, angle, 0);
-            //}
+            if (hit.distance < obstacleRange)
+            {
+                float angle = Random.Range(-110, 110);
+                transform.Rotate(0, angle, 0);
+            }
         }
-        else
+
+        // i will now do a separate raycast to detect the player, or anything the AI can attack
+        RaycastHit[] hitObjs = Physics.SphereCastAll(ray, detectionRadius, detectionRadiusOffset, layermask);
+        if(hitObjs.Length > 0)
         {
-            Debug.Log("nothing found!");
+            // attack all objects that are tagged to be attacked
+            if (fireball == null)
+            {
+                foreach (RaycastHit target in hitObjs)
+                {
+                    // Debug.Log(target.transform.gameObject.name);
+                    // change y rotation to look at target
+                    Transform currTrans = transform;
+                    transform.LookAt(target.transform);
+
+                    // shoot fireball
+                    fireball = Instantiate(fireballPrefab) as GameObject;
+                    fireball.transform.position = transform.TransformPoint(Vector3.forward * 1.5f);
+                    fireball.transform.rotation = transform.rotation;
+
+                    // revert back to old rotation to keep moving around
+                    transform.Rotate(currTrans.rotation.eulerAngles);
+                }
+            }
         }
-        //Collider[] hitColliders = Physics.OverlapSphere(transform.position, pathfindingRadius, layermask);
-        //if (hitColliders.Length > 0)
-        //{
-        //    foreach (Collider collider in hitColliders)
-        //    {
-        //        if (collider.gameObject.GetComponent<PlayerCharacter>())
-        //        {
-        //            if (fireball == null)
-        //            {
-        //                fireball = Instantiate(fireballPrefab) as GameObject;
-        //                fireball.transform.position = transform.TransformPoint(Vector3.forward * 1.5f);
-        //                fireball.transform.rotation = transform.rotation;
-        //            }
-        //        }
-        //        else if(Vector3.Distance(transform.position, collider.transform.position) < obstacleRange)
-        //        {
-        //            float angle = Random.Range(-110, 110);
-        //            transform.Rotate(0, angle, 0);
-        //        }
-        //    }
-        //}
-        //else
-        //{
-        //    Debug.Log("nothing here");
-        //}
     }
 
     // function for other classes to set dead or alive when hit
@@ -214,3 +184,4 @@ public class WanderingAI : MonoBehaviour
         isAlive = alive;
     }
 }
+
