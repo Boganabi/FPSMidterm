@@ -104,11 +104,13 @@ public class WanderingAI : MonoBehaviour
 
     // current state
     private bool isAlive;
+    private GameObject player;
 
     // Start is called before the first frame update
     void Start()
     {
         isAlive = true;
+        player = GameObject.FindWithTag("Player");
     }
 
     // Update is called once per frame
@@ -153,27 +155,87 @@ public class WanderingAI : MonoBehaviour
         }
 
         // i will now do a separate raycast to detect the player, or anything the AI can attack
-        RaycastHit[] hitObjs = Physics.SphereCastAll(ray, detectionRadius, detectionRadiusOffset, layermask);
-        if(hitObjs.Length > 0)
+        //RaycastHit[] hitObjs = Physics.SphereCastAll(ray, detectionRadius, detectionRadiusOffset, layermask);
+        //if(hitObjs.Length > 0)
+        //{
+        //    // attack all objects that are tagged to be attacked
+        //    if (fireball == null)
+        //    {
+        //        foreach (RaycastHit target in hitObjs)
+        //        {
+        //            // first need to do raycast to see if we can see object
+        //            RaycastHit lineOfSight;
+        //            Vector3 rayDirection = target.point - transform.position;
+        //            if(Physics.Raycast(transform.position, rayDirection, out lineOfSight))
+        //            {
+        //                int test1 = lineOfSight.transform.gameObject.layer;
+        //                int test2 = (int)Mathf.Log(layermask.value, 2); // since the layer is bitmasked we need to use log base 2
+        //                if (test1 == test2)
+        //                {
+        //                    Debug.Log(target.transform.gameObject.name);
+        //                    // change y rotation to look at target
+        //                    Transform currTrans = transform;
+        //                    transform.LookAt(target.transform);
+
+        //                    // shoot fireball
+        //                    fireball = Instantiate(fireballPrefab) as GameObject;
+        //                    fireball.transform.position = transform.TransformPoint(Vector3.forward * 1.5f);
+        //                    fireball.transform.rotation = transform.rotation;
+
+        //                    // revert back to old rotation to keep moving around
+        //                    transform.Rotate(currTrans.rotation.eulerAngles);
+        //                }
+        //                else
+        //                {
+        //                    Debug.Log(test1);
+        //                    Debug.Log(test2);
+        //                }
+        //            }
+        //        }
+        //    }
+        //}
+        // first need to do raycast to see if we can see player
+        RaycastHit lineOfSight;
+        Vector3 rayDirection = player.transform.position - transform.position;
+        if (Physics.Raycast(transform.position, rayDirection, out lineOfSight))
         {
-            // attack all objects that are tagged to be attacked
-            if (fireball == null)
+            //int test1 = lineOfSight.transform.gameObject.layer;
+            //int test2 = (int)Mathf.Log(layermask.value, 2); // since the layer is bitmasked we need to use log base 2
+            //if (test1 == test2)
+            //{
+            //    Debug.Log("pew");
+            //    // change y rotation to look at target
+            //    Transform currTrans = transform;
+            //    transform.LookAt(player.transform);
+
+            //    // shoot fireball
+            //    fireball = Instantiate(fireballPrefab) as GameObject;
+            //    fireball.transform.position = transform.TransformPoint(Vector3.forward * 1.5f);
+            //    fireball.transform.rotation = transform.rotation;
+
+            //    // revert back to old rotation to keep moving around
+            //    transform.Rotate(currTrans.rotation.eulerAngles);
+            //}
+            //else
+            //{
+            //    Debug.Log(test1);
+            //    Debug.Log(test2);
+            //}
+
+            if(fireball == null)
             {
-                foreach (RaycastHit target in hitObjs)
-                {
-                    // Debug.Log(target.transform.gameObject.name);
-                    // change y rotation to look at target
-                    Transform currTrans = transform;
-                    transform.LookAt(target.transform);
+                Debug.Log("pew");
+                // change y rotation to look at target
+                Transform currTrans = transform;
+                transform.LookAt(player.transform);
 
-                    // shoot fireball
-                    fireball = Instantiate(fireballPrefab) as GameObject;
-                    fireball.transform.position = transform.TransformPoint(Vector3.forward * 1.5f);
-                    fireball.transform.rotation = transform.rotation;
+                // shoot fireball
+                fireball = Instantiate(fireballPrefab) as GameObject;
+                fireball.transform.position = transform.TransformPoint(Vector3.forward * 1.5f);
+                fireball.transform.rotation = transform.rotation;
 
-                    // revert back to old rotation to keep moving around
-                    transform.Rotate(currTrans.rotation.eulerAngles);
-                }
+                // revert back to old rotation to keep moving around
+                transform.Rotate(currTrans.rotation.eulerAngles);
             }
         }
     }
