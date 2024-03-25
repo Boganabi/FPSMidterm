@@ -102,6 +102,8 @@ public class WanderingAI : MonoBehaviour
     public float detectionRadius = 10f;
     public float detectionRadiusOffset = 0f;
 
+    public int currentHealth = 10;
+
     // current state
     private bool isAlive;
     private GameObject player;
@@ -237,6 +239,21 @@ public class WanderingAI : MonoBehaviour
                 // revert back to old rotation to keep moving around
                 transform.Rotate(currTrans.rotation.eulerAngles);
             }
+        }
+    }
+
+    //Enemy takes damage to health
+    public void TakeDamage(int damage)
+    {
+        //enemy takes damage to health
+        currentHealth = currentHealth - damage;
+        Debug.Log($"Health: {currentHealth}");
+        //Once enemy dies go to ReactToHit
+        if (currentHealth <= 0 && isAlive == true)
+        {
+            Debug.Log("ENEMY DEAD");
+            gameObject.GetComponent<ReactiveTarget>().ReactToHit();
+            
         }
     }
 
