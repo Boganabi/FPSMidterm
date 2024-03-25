@@ -11,6 +11,8 @@ public class WanderingAI : MonoBehaviour
     public float speed = 3.0f;
     public float obstacleRange = 5.0f;
 
+    public int currentHealth = 10;
+
     // current state
     private bool isAlive;
 
@@ -59,6 +61,21 @@ public class WanderingAI : MonoBehaviour
                 float angle = Random.Range(-110, 110);
                 transform.Rotate(0, angle, 0);
             }
+        }
+    }
+
+    //Enemy takes damage to health
+    public void TakeDamage(int damage)
+    {
+        //enemy takes damage to health
+        currentHealth = currentHealth - damage;
+        Debug.Log($"Health: {currentHealth}");
+        //Once enemy dies go to ReactToHit
+        if (currentHealth <= 0 && isAlive == true)
+        {
+            Debug.Log("ENEMY DEAD");
+            gameObject.GetComponent<ReactiveTarget>().ReactToHit();
+            
         }
     }
 
