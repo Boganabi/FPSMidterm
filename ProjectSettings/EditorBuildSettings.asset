@@ -4,5 +4,11 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Main Menu.unity
+    guid: bbefe2a82df693c4e89c7b2648b79f22
+  - enabled: 1
+    path: Assets/Scenes/NightClubLite.unity
+    guid: d60f2e5947314a6449d5d8790cdc954e
   m_configObjects: {}
