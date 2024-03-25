@@ -19382,6 +19382,63 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4708917069048632, guid: a203ce273277b214989cf2ddadb5ac4b, type: 3}
   m_PrefabInstance: {fileID: 2147058080}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &2604113730169869131
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3923622261386379363, guid: 5279e6c8d6bebb24c91fd61621ebb4c9, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 8.34
+      objectReference: {fileID: 0}
+    - target: {fileID: 3923622261386379363, guid: 5279e6c8d6bebb24c91fd61621ebb4c9, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.11406
+      objectReference: {fileID: 0}
+    - target: {fileID: 3923622261386379363, guid: 5279e6c8d6bebb24c91fd61621ebb4c9, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 2.26
+      objectReference: {fileID: 0}
+    - target: {fileID: 3923622261386379363, guid: 5279e6c8d6bebb24c91fd61621ebb4c9, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.17364809
+      objectReference: {fileID: 0}
+    - target: {fileID: 3923622261386379363, guid: 5279e6c8d6bebb24c91fd61621ebb4c9, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3923622261386379363, guid: 5279e6c8d6bebb24c91fd61621ebb4c9, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.9848078
+      objectReference: {fileID: 0}
+    - target: {fileID: 3923622261386379363, guid: 5279e6c8d6bebb24c91fd61621ebb4c9, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3923622261386379363, guid: 5279e6c8d6bebb24c91fd61621ebb4c9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3923622261386379363, guid: 5279e6c8d6bebb24c91fd61621ebb4c9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 3923622261386379363, guid: 5279e6c8d6bebb24c91fd61621ebb4c9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3923622261386878017, guid: 5279e6c8d6bebb24c91fd61621ebb4c9, type: 3}
+      propertyPath: m_Name
+      value: CyberSoldier
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5279e6c8d6bebb24c91fd61621ebb4c9, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -19392,3 +19449,4 @@ SceneRoots:
   - {fileID: 2142969263}
   - {fileID: 1706706861}
   - {fileID: 1212824277}
+  - {fileID: 2604113730169869131}
