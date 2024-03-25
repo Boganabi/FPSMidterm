@@ -224,7 +224,7 @@ public class WanderingAI : MonoBehaviour
 
             if(fireball == null)
             {
-                Debug.Log("pew");
+                // Debug.Log("pew");
                 // change y rotation to look at target
                 Transform currTrans = transform;
                 transform.LookAt(player.transform);
