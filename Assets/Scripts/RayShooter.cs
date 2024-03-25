@@ -90,7 +90,11 @@ public class RayShooter : MonoBehaviour
         {
             // Debug.Log("Target hit!");
             //If enemy hit, take damage from wanderingAI
-            target.GetComponent<WanderingAI>().TakeDamage(damage);
+            WanderingAI ai = target.GetComponent<WanderingAI>();
+            if(ai != null)
+            {
+                ai.TakeDamage(damage);
+            }
         }
         else
         {
