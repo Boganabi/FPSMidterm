@@ -125,7 +125,7 @@ public class MeleeAI : MonoBehaviour
 
             // charge and do melee attack
             isAttacking = true;
-            Debug.Log(isAttacking);
+            // Debug.Log(isAttacking);
             GameObject hitObject = lineOfSight.transform.gameObject;
             if (hitObject.GetComponent<PlayerCharacter>())
             {
