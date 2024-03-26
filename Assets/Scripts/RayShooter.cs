@@ -95,6 +95,15 @@ public class RayShooter : MonoBehaviour
             {
                 ai.TakeDamage(damage);
             }
+            else
+            {
+                MeleeAI meleebehavior = target.GetComponent<MeleeAI>();
+                if(meleebehavior != null)
+                {
+                    // make melee ai die on 1 hit
+                    target.ReactToHit();
+                }
+            }
         }
         else
         {
