@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerCharacter : MonoBehaviour
 {
@@ -30,6 +31,7 @@ public class PlayerCharacter : MonoBehaviour
         if(playerHealth <= 0){
             Debug.Log("YOU DIED");
             //add return to main menu
+            SceneManager.LoadSceneAsync("Main Menu");
         }
     }
 }
