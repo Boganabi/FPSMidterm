@@ -12,6 +12,7 @@ public class RayShooter : MonoBehaviour
     public float cooldown = 0.1f;
 
     public bool useNormalGun = true; // change this in the inspector
+    public int damage = 5;
 
     // Start is called before the first frame update
     void Start()
@@ -88,7 +89,21 @@ public class RayShooter : MonoBehaviour
         if (target != null)
         {
             // Debug.Log("Target hit!");
-            target.ReactToHit();
+            //If enemy hit, take damage from wanderingAI
+            WanderingAI ai = target.GetComponent<WanderingAI>();
+            if(ai != null)
+            {
+                ai.TakeDamage(damage);
+            }
+            else
+            {
+                MeleeAI meleebehavior = target.GetComponent<MeleeAI>();
+                if(meleebehavior != null)
+                {
+                    // make melee ai die on 1 hit
+                    target.ReactToHit();
+                }
+            }
         }
         else
         {

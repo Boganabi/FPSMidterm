@@ -21,7 +21,7 @@ public class SceneController : MonoBehaviour
     {
         // spawn one at start of game
         enemy = Instantiate(enemyPrefab) as GameObject;
-        enemy.transform.position = new Vector3(0, 1, 0);
+        enemy.transform.position = new Vector3(-230, 1, 25);
         float angle = Random.Range(0, 360);
         enemy.transform.Rotate(0, angle, 0);
         timeSinceLastSpawn = 0;

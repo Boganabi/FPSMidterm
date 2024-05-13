@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class PlayerCharacter : MonoBehaviour
 {
-
-    private int health;
+    //players health variables
+    public int maxHealth = 20; 
+    public int playerHealth;
 
     // Start is called before the first frame update
     void Start()
     {
-        health = 5;
+        //set max health to player health
+        playerHealth = maxHealth;
     }
 
     // Update is called once per frame
@@ -22,7 +24,12 @@ public class PlayerCharacter : MonoBehaviour
     // taking damage
     public void Hurt(int damage)
     {
-        health -= damage;
-        Debug.Log($"Health: {health}");
+        playerHealth -= damage;
+        Debug.Log($"Helath: {playerHealth}");
+        //Player Dies go to Main menu
+        if(playerHealth <= 0){
+            Debug.Log("YOU DIED");
+            //add return to main menu
+        }
     }
 }
