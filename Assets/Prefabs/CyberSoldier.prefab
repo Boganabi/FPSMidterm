@@ -105,6 +105,7 @@ MonoBehaviour:
   speed: 3
   obstacleRange: 5
   damage: 1
+  manager: {fileID: 0}
 --- !u!114 &8224525492258183676
 MonoBehaviour:
   m_ObjectHideFlags: 0
