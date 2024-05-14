@@ -8,6 +8,8 @@ public class PlayerCharacter : MonoBehaviour
     //players health variables
     public int maxHealth = 20; 
     public int playerHealth;
+    public AudioSource audioSource; // Attach the AudioSource component
+    public AudioClip hurtSound; 
 
     // Start is called before the first frame update
     void Start()
@@ -32,6 +34,10 @@ public class PlayerCharacter : MonoBehaviour
         playerHealth -= damage;
         Debug.Log($"Helath: {playerHealth}");
         //Player Dies go to Main menu
+        if (damage > 0)
+        {
+            audioSource.PlayOneShot(hurtSound);
+        }
         if(playerHealth <= 0){
             Debug.Log("YOU DIED");
             //add return to main menu
