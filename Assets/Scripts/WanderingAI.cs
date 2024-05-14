@@ -233,7 +233,10 @@ public class WanderingAI : MonoBehaviour
 
                     // change y rotation to look at target
                     Transform currTrans = transform;
-                    transform.LookAt(player.transform);
+                    Transform adjustedPlayerLoc = player.transform;
+                    adjustedPlayerLoc.position = new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z);
+                    // transform.LookAt(player.transform);
+                    transform.LookAt(adjustedPlayerLoc);
 
                     // shoot fireball
                     fireball = Instantiate(fireballPrefab) as GameObject;

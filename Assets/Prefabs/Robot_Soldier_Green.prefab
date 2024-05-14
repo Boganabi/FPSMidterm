@@ -894,6 +894,7 @@ GameObject:
   - component: {fileID: -4052903368401203090}
   - component: {fileID: 241381774521967138}
   - component: {fileID: -7134274086217656367}
+  - component: {fileID: -4403289567141733699}
   m_Layer: 0
   m_Name: Robot_Soldier_Green
   m_TagString: Untagged
@@ -996,10 +997,33 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 1.9940073, z: 1}
+  m_Center: {x: 0, y: 0.9219414, z: 0}
+--- !u!136 &-4403289567141733699
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1414035686149406}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &1417747815958528
 GameObject:
   m_ObjectHideFlags: 0
