@@ -9,26 +9,23 @@ public class PlayerCharacter : MonoBehaviour
     public int maxHealth = 20; 
     public int playerHealth;
 
-    public float elapsedTime = 0f; // to track elapsed time
-
     // Start is called before the first frame update
     void Start()
     {
         //set max health to player health
         playerHealth = maxHealth;
-        elapsedTime = 0f;
     }
 
     // Update is called once per frame
     void Update()
     {
-        elapsedTime += Time.deltaTime;
-        Debug.Log($"Elapsed Time: {elapsedTime} seconds");
+        SessionData.ElapsedTime += Time.deltaTime;
+        Debug.Log($"Elapsed Time: {SessionData.ElapsedTime} seconds");
     }
 
     // taking damage
     public float GetElapsedTime(){
-        return elapsedTime;
+        return SessionData.ElapsedTime;
     }
     public void Hurt(int damage)
     {

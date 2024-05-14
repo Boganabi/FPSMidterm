@@ -26843,6 +26843,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 3
   gravity: -9.8
+  gunshotSound: {fileID: 8300000, guid: e78942cb149893049bf7e37ad72ee289, type: 3}
 --- !u!143 &676454352
 CharacterController:
   m_ObjectHideFlags: 0
@@ -26957,7 +26958,7 @@ AudioSource:
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 188
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
@@ -27025,7 +27026,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 1
+      value: 0.463
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -46741,7 +46742,6 @@ MonoBehaviour:
   cooldown: 0.1
   useNormalGun: 1
   damage: 5
-  gunshotSound: {fileID: 0}
 --- !u!114 &1190302970
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -13,8 +13,8 @@ public class SummaryManager : MonoBehaviour
     void Start()
     {
         // Retrieve and display stored values
-        survivalTimeText.text = playerCharacter.GetElapsedTime().ToString("F2") + " seconds";
-        enemiesKilledText.text = PlayerPrefs.GetInt("EnemiesKilled").ToString();
+        survivalTimeText.text = SessionData.ElapsedTime.ToString("F2") + " seconds";
+        enemiesKilledText.text = SessionData.EnemiesKilled.ToString();
 
         // Setup button listener
         continueButton.onClick.AddListener(GoToMainMenu);
@@ -23,6 +23,7 @@ public class SummaryManager : MonoBehaviour
     // Method to load the Main Menu scene
     void GoToMainMenu()
     {
+        SessionData.Reset();
         SceneManager.LoadScene("Main Menu");
     }
 }
