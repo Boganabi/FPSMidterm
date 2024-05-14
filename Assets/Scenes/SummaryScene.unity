@@ -890,6 +890,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e51a430bf85ac034296456fc95f64d3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  survivalTimeText: {fileID: 2024819427}
+  enemiesKilledText: {fileID: 1851220988}
+  continueButton: {fileID: 1277722256}
+  playerCharacter: {fileID: 0}
 --- !u!1 &1652807596
 GameObject:
   m_ObjectHideFlags: 0

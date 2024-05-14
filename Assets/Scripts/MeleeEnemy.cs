@@ -75,7 +75,7 @@ public class Enemy : MonoBehaviour
     {
         health -= damageAmount;
         animator.SetTrigger("damage");
-        CameraShake.Instance.ShakeCamera(2f, 0.2f);
+        // CameraShake.Instance.ShakeCamera(2f, 0.2f);
 
         if (health <= 0)
         {
@@ -84,11 +84,11 @@ public class Enemy : MonoBehaviour
     }
     public void StartDealDamage()
     {
-        GetComponentInChildren<EnemyDamageDealer>().StartDealDamage();
+        // GetComponentInChildren<EnemyDamageDealer>().StartDealDamage();
     }
     public void EndDealDamage()
     {
-        GetComponentInChildren<EnemyDamageDealer>().EndDealDamage();
+        // GetComponentInChildren<EnemyDamageDealer>().EndDealDamage();
     }
 
     public void HitVFX(Vector3 hitPosition)

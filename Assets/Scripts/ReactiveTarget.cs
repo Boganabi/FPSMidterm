@@ -9,7 +9,7 @@ public class ReactiveTarget : MonoBehaviour
     // in the future we want to only call this function once, so we dont get multiple "deaths"
 
     // pool management
-    public PoolManager manager;
+    [SerializeField] public PoolManager manager;
 
     public void ResetState() {
 

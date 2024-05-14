@@ -23,7 +23,7 @@ public class PlayerCharacter : MonoBehaviour
     void Update()
     {
         elapsedTime += Time.deltaTime;
-        Debug.Log($"Elapsed Time: {elapsedTime} seconds");
+        // Debug.Log($"Elapsed Time: {elapsedTime} seconds");
     }
 
     // taking damage

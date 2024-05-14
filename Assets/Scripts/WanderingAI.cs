@@ -108,11 +108,16 @@ public class WanderingAI : MonoBehaviour
     private bool isAlive;
     private GameObject player;
 
+    private Animator anim;
+
     // Start is called before the first frame update
     void Start()
     {
         isAlive = true;
         player = GameObject.FindWithTag("Player");
+
+        anim = GetComponent<Animator>();
+        anim.SetBool("isMoving", true);
     }
 
     // Update is called once per frame
@@ -121,6 +126,8 @@ public class WanderingAI : MonoBehaviour
         // check if alive first before moving
         if (isAlive)
         {
+            anim.SetBool("isMoving", true);
+
             // move forward
             transform.Translate(0, 0, speed * Time.deltaTime);
 
@@ -222,13 +229,16 @@ public class WanderingAI : MonoBehaviour
 
                 if (fireball == null) {
                     // Debug.Log("pew");
+                    anim.SetBool("isMoving", false);
+
                     // change y rotation to look at target
                     Transform currTrans = transform;
                     transform.LookAt(player.transform);
 
                     // shoot fireball
                     fireball = Instantiate(fireballPrefab) as GameObject;
-                    fireball.transform.position = transform.TransformPoint(Vector3.forward * 1.5f);
+                    // fireball.transform.position = transform.TransformPoint(Vector3.forward * 1.5f);
+                    fireball.transform.position = transform.TransformPoint(new Vector3(0, 1, 1) * 1.5f);
                     fireball.transform.rotation = transform.rotation;
 
                     // revert back to old rotation to keep moving around
@@ -249,7 +259,10 @@ public class WanderingAI : MonoBehaviour
         {
             Debug.Log("ENEMY DEAD");
             gameObject.GetComponent<ReactiveTarget>().ReactToHit();
-            
+
+            anim.SetBool("isMoving", false);
+            this.transform.Rotate(-75, 0, 0); // change this to rotate away from hit direction in the future...
+
         }
     }
 
