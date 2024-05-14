@@ -29089,7 +29089,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 20
   playerHealth: 0
-  elapsedTime: 0
+  audioSource: {fileID: 0}
+  hurtSound: {fileID: 8300000, guid: 43cb85b853b185843ba917090f2ffc3a, type: 3}
 --- !u!114 &676454350
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29121,6 +29122,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 3
   gravity: -9.8
+  gunshotSound: {fileID: 8300000, guid: e78942cb149893049bf7e37ad72ee289, type: 3}
 --- !u!143 &676454352
 CharacterController:
   m_ObjectHideFlags: 0
