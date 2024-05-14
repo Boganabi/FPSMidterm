@@ -26811,7 +26811,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 20
   playerHealth: 0
-  elapsedTime: 0
+  audioSource: {fileID: 676454356}
+  hurtSound: {fileID: 8300000, guid: 43cb85b853b185843ba917090f2ffc3a, type: 3}
 --- !u!114 &676454350
 MonoBehaviour:
   m_ObjectHideFlags: 0
