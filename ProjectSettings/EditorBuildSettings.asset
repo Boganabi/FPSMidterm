@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/NightClubLite.unity
     guid: d60f2e5947314a6449d5d8790cdc954e
+  - enabled: 1
+    path: Assets/Scenes/SummaryScene.unity
+    guid: d2a3cca3b4055ab4481ee54515b81ea2
   m_configObjects: {}
