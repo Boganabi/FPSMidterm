@@ -8,11 +8,12 @@ public class SummaryManager : MonoBehaviour
     public TextMeshProUGUI survivalTimeText; // TMP text for displaying survival time
     public TextMeshProUGUI enemiesKilledText; // TMP text for displaying enemies killed
     public Button continueButton; // Button to go back to the main menu
+    public PlayerCharacter playerCharacter;
 
     void Start()
     {
         // Retrieve and display stored values
-        survivalTimeText.text = PlayerPrefs.GetFloat("SurvivalTime").ToString("F2") + " seconds";
+        survivalTimeText.text = playerCharacter.GetElapsedTime().ToString("F2") + " seconds";
         enemiesKilledText.text = PlayerPrefs.GetInt("EnemiesKilled").ToString();
 
         // Setup button listener
