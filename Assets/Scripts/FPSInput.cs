@@ -8,13 +8,22 @@ public class FPSInput : MonoBehaviour
     public float speed = 20f;
     public float gravity = -9.8f;
 
+    public AudioClip gunshotSound; // Assign this in the Unity Editor
+    private AudioSource audioSource;
+
     private CharacterController charController;
 
     // Start is called before the first frame update
     void Start()
     {
         charController = GetComponent<CharacterController>();
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null) // Ensure there is an AudioSource component
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+        }
     }
+    
 
     // Update is called once per frame
     void Update()
@@ -46,5 +55,10 @@ public class FPSInput : MonoBehaviour
 
         // move charater controller
         charController.Move(movement);
+        if (Input.GetMouseButtonDown(0)) // 0 is the button number for left click
+        {
+            audioSource.PlayOneShot(gunshotSound);
+        }
     }
+
 }
