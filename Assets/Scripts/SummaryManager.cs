@@ -13,6 +13,8 @@ public class SummaryManager : MonoBehaviour
     void Start()
     {
         Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+
         // Retrieve and display stored values
         survivalTimeText.text = SessionData.ElapsedTime.ToString("F2") + " seconds";
       //  enemiesKilledText.text = SessionData.EnemiesKilled.ToString();
